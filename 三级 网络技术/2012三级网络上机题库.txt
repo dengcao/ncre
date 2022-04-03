@@ -1,0 +1,1193 @@
+★题目1
+请编写一个函数jsValue(int m,int k,int xx[])，该函数的功能是：将大于整数m且紧靠m的k个素数存入数组xx传回。  int isP(int m)
+{int i;
+ for(i=2;i<m;i++)
+   if(m % i==0)return 0;
+ return 1;
+}
+void num(int m,int k,int xx[])
+{ int s=0;
+  for(m=m+1;k>0;m++)
+   if(isP(m)) { xx[s++]=m; k--;}}
+★题目2
+已知数据文件IN.DAT中存有200个四位数，并已调用读函数readDat()把这些数存入数组a中，请考生编制一函数jsVal()，其功能是：如果四位数各位上的数字均是0或2或4或6或8，则统计出满足此条件的个数cnt，并把这些四位数按从大到小的顺序存入数组b中。    void jsVal()
+{ int i,j,qw,bw,sw,gw;
+  for(i=0;i<MAX;i++)
+   {qw=a[i]/1000; bw=a[i]/100%10; 
+     sw=a[i]%100/10; gw=a[i]%10;    if(qw&&qw%2==0&&bw%2==0&&sw%2==0&&gw%2==0) b[cnt++]=a[i];}
+  for(i=0;i<cnt-1;i++)
+    for(j=i+1;j<cnt;j++)
+      if(b[i]<b[j]) { qw=b[i]; b[i]=b[j]; b[j]=qw;}}
+★题目3
+函数ReadDat( )实现从文件IN.DAT中读取一篇英文文章存入到字符串数组xx中；请编制函数StrOR( )，其函数的功能是：以行为单位依次把字符串中所有小写字母o左边的字符串内容移到该串的右边存放，然后把小写字母o删除，余下的字符串内容移到已处理字符串的左边存放，之后把已处理的字符串仍按行重新存入字符串数组xx中。 
+void StrOR(void)
+{int i,righto,j,s,k;
+ char tem[80];
+ for(i=0;i<maxline;i++)   
+for(j=strlen(xx[i])-1;j>=0;j--)
+      {  k=0; 
+memset(tem,0,80);
+        if(xx[i][j]=='o')
+          {righto=j;  
+         for(s=righto+1;s<strlen(xx[i]);s++) 
+tem[k++]=xx[i][s]; 
+ for(s=0;s<righto;s++)     
+ if(xx[i][s]!='o') 
+tem[k++]=xx[i][s];    
+strcpy(xx[i],tem);}
+ else continue;} }
+★题目4
+函数ReadDat()实现从文件IN.DAT中读取一篇英文文章存入到字符串数组xx中，请编制函数StrOL()，其函数的功能是：以行为单位对行中以空格或标点符号为分隔的所有单词进行倒排。最后把已处理的字符串（应不含标点符号）仍按行重新存入字符串数组xx中，最后调用函数writeDat()把结果xx输出到文件OUT6.DAT中。
+ 例如：原文：You He Me
+         I am a student.
+　　结果：Me He You
+         student a am I
+ void StrOL(void) 
+{ int i,j,k,s,m,strl;
+  char str[80];
+  for(i=0;i<maxline;i++)
+   { strl=strlen(xx[i]);
+memset(str,0,80);  
+   s=k=0;
+for(j=strl-1;j>=0;j--)   
+  {if(isalpha(xx[i][j])) k++; else { for(m=1;m<=k;m++)
+ str[s++]=xx[i][j+m];
+  k=0; }
+ if(!isalpha(xx[i][j])) 
+str[s++]=' ';  }
+for(m=1;m<=k;m++)  
+  str[s++]=xx[i][j+m];
+str[s]='\0';    
+strcpy(xx[i],str);   }}
+☆题目5（整数排序题)
+在文件in.dat中有200个正整数，且每个数均在1000至9999之间。函数ReadDat()读取这200个数存放到数组aa中。请编制函数jsSort()，其函数的功能是：要求按每个数的后三位的大小进行升序排列，然后取出满足此条件的前10个数依次存入数组bb中，如果后三位的数值相等，则按原先的数值进行降序排列。最后调用函数WriteDat()把结果bb输出到文件out.dat中。
+ 例：处理前 6012  5099  9012  7025  8088
+    处理后 9012  6012  7025  8088  5099
+   void jsSort()
+{ int i,j,data;
+ for(i=0;i<199;i++)
+  for(j=i+1;j<200;j++)   if(aa[i]%1000>aa[j]%1000||aa[i]%1000==aa[j]%1000&&aa[i]<aa[j])          {data=aa[i];aa[i]=aa[j];aa[j]=data;}
+ for(i=0;i<10;i++)
+   bb[i]=aa[i];}
+☆题目6 正整数排序
+在文件in.dat中有200个正整数，且每个数均在1000至9999之间。函数ReadDat()读取这200个数存放到数组aa中。请编制函数jsSort()，其函数的功能是：要求按每个数的后三位的大小进行降序排列，然后取出满足此条件的前10个数依次存入数组b中，如果后三位的数值相等，则按原先的数值进行升序排列。
+例：处理前 9012 5099 6012 7025 8088
+    处理后 5099 8088 7025 6012 9012
+void jsSort()
+{int i,j,data;
+ for(i=0;i<199;i++)
+  for(j=i+1;j<200;j++) if(aa[i]%1000<aa[j]%1000||aa[i]%1000==aa[j]%1000&&aa[i]>aa[j])         {data=aa[i];aa[i]=aa[j];aa[j]=data;}
+ for(i=0;i<10;i++)
+   bb[i]=aa[i];}
+☆题目7（结构体操作题)
+已知在文件IN.DAT中存有100个产品销售记录，每个产品销售记录由产品代码dm(字符型4位)，产品名称mc(字符型10位)，单价dj(整型)，数量sl(整型)，金额je(长整型)五部分组成。其中：金额=单价*数量计算得出。函数ReadDat()是读取这100个销售记录并存入结构数组sell中。请编制函数SortDat()，其功能要求：按产品代码从大到小进行排列，若产品代码相同，则按金额从大到小进行排列，最终排列结果仍存入结构数组sell中，
+    void SortDat()
+{int i,j;
+ PRO xy;
+ for(i=0;i<99;i++)
+  for(j=i+1;j<100;j++) if(strcmp(sell[i].dm,sell[j].dm)<0||strcmp(sell[i].dm,sell[j].dm)==0&&sell[i].je<sell[j].je)
+     {xy=sell[i]; sell [i]=sell[j]; sell[j]=xy;}}
+★题目8（字符替换题)
+函数ReadDat()实现从文件ENG.IN中读取一篇英文文章，存入到字符串数组xx中；请编制函数encryptChar()，按给定的替代关系对数组xx中的所有字符进行替代，仍存入数组xx的对应的位置上，
+替代关系：f(p)=p*11 mod 256（p是数组中某一个字符的ASCII值，f(p)是计算后新字符的ASCII值），如果计算后f(p)值小于等于32或大于130，则该字符不变，否则将f(p)所对应的字符进行替代。（注意中间变量用无符号整型），
+void encryptChar()
+{ int i,j;
+  for(i=0;i<maxline;i++)   for(j=0;j<strlen(xx[i]);j++)      if(xx[i][j]*11%256<=32||xx[i][j]*11%256>130) continue;
+      else xx[i][j]=xx[i][j]*11%256;}
+★☆题目9（字符串排序题)
+函数ReadDat()实现从文件IN.DAT中读取一篇英文文章存入到字符串数组xx中，请编制函数SortCharD()，其函数的功能是：以行为单位对字符按从大到小的顺序进行排序，排序后的结果仍按行重新存入字符串数组xx中，    例：原文：dAe,BfC.
+              CCbbAA
+        结果：fedCBA.
+              bbCCAA
+  void SortCharD(void)
+{int i,j,k,strl;
+ char ch;
+ for(i=0;i<maxline;i++)
+  {strl=strlen(xx[i]);
+   for(j=0;j<strl-1;j++)
+    for(k=j+1;k<strl;k++) 
+      if(xx[i][j]<xx[i][k])
+        {ch=xx[i][j]; xx[i][j]=xx[i][k]; xx[i][k]=ch;}}}
+★☆题目10（替换字符题)
+函数ReadDat()实现从文件IN.DAT中读取一篇英文文章存入到字符串数组xx中，请编制函数ConvertCharA()，其函数的功能是：以行为单位把字符串中的所有小写字母改写成该字母的下一个字母，如果是字母z，则改写成字母a。大写字母仍为大写字母，小写字母仍为小写字母，其他字符不变。
+    例：原文：Adb.Bcdza
+              abck.LLhj
+        结果：Aec.Bdeab
+              bcdl.Llik
+ void ConvertCharA(void)
+{ int i,j;
+  for(i=0;i<maxline;i++)   { for(j=0;j<strlen(xx[i]);j++)
+if(xx[i][j]=='z')
+xx[i][j]='a';
+  else if(xx[i][j]>='a'&&xx[i][j]<='y') xx[i][j]+=1;}}
+☆题目11（字符串字母移位题)
+程序prog1.c的功能是：把 s 字符串中的所有字母改写成该字母的下一个字母，字母z改写成字母a。要求大写字母仍为大写字母，小写字母仍为小写字母，其它字符不做改变。
+请考生编写函数chg(char  *s)实现程序要求，
+    例如：s 字符串中原有的内容为：Mn.123Zxy，则调用该函数后，结果为：No.123Ayz。
+   void chg(char *s)
+{int I;
+for(I=0;I<strlen(s);I++)
+ if(s[i]=='z'||s[i]=='Z')  s[i]-=25; 
+ else if(s[i]>='a'&&s[i]<='y'||s[i]>='A'&&s[i]<='Y') 
+s[i]+=1;}
+★☆题目12（结构体运算题题)
+已知在文件IN.DAT中存有100个产品销售记录，每个产品销售记录由产品代码dm(字符型4位)，产品名称mc(字符型10位)，单价dj(整型)，数量sl(整型)，金额je(长整型)五部分组成。其中：金额=单价*数量计算得出。函数ReadDat()是读取这100个销售记录并存入结构数组sell中。请编制函数SortDat()，其功能要求：
+按产品名称从小到大进行排列，若产品名称相等，则按金额从小到大进行排列，最终排列结果仍存入结构数组sell中，
+ void SortDat()
+{int i,j;
+ PRO xy;
+ for(i=0;i<99;i++)
+  for(j=i+1;j<100;j++)   if(strcmp(sell[i].mc,sell[j].mc)>0||strcmp(sell[i].mc,sell[j].mc)==0&&sell[i].je>sell[j].je)       {xy=sell[i];sell[i]=sell[j];sell[j]=xy;}}
+题目13（结构体运算题）
+已知在文件IN.DAT中存有100个产品销售记录，每个产品销售记录由产品代码dm(字符型4位)，产品名称mc(字符型10位)，单价dj(整型)，数量sl(整型)，金额je(长整型)五部分组成。其中：金额=单价*数量计算得出。函数ReadDat()是读取这100个销售记录并存入结构数组sell中。请编制函数SortDat()，其功能
+要求：按产品代码从小到大进行排列，若产品代码相等，则按金额从大到小进行排列，最终排列结果仍存入结构数组sell中，    void SortDat()
+{int i,j;
+ PRO xy;
+ for(i=0;i<99;i++)
+  for(j=i+1;j<100;j++)   if(strcmp(sell[i].dm,sell[j].dm)>0||strcmp(sell[i].dm,sell[j].dm)==0&&sell[i].je<sell[j].je)
+       {xy=sell[i];sell[i]=sell[j];sell[j]=xy;}}
+★☆题目14（整数统计排序题)
+已知数据文件IN.DAT中存有200个四位数，并已调用读函数readDat()把这些数存入数组a中，请考生编制一函数jsVal()，其功能是：依次从数组a中取出一个四位数，如果该四位数连续大于该四位数以后的五个数且该数是奇数（该四位数以后不满五个数，则不统计），则统计出满足此条件的个数cnt并把这些四位数按从小到大的顺序存入数组b中，
+   void j
+sVal()
+{int i,j,flag;
+ for(i=0;i<MAX-5;i++)
+  {for(j=i+1;j<=i+5;j++)
+     if(a[i]>a[j]&&a[i]%2) flag=1;
+   else {flag=0;break;}
+if(flag==1) b[cnt++]=a[i]; }
+ for(i=0;i<cnt-1;i++)
+   for(j=i+1;j<cnt;j++)
+     if(b[i]>b[j]) {flag=b[i];b[i]=b[j];b[j]=flag;}}
+★题目15（整数各位数字运算排序题)
+已知数据文件IN.DAT中存有200个四位数，并已调用读函数readDat()把这些数存入数组a中，请考生编制一函数jsVal()，其功能是：若一个四位数的千位数字上的值小于等于百位数字上的值，百位数字上的值小于等于十位数字上的值，以及十位数字上的值小于等于个位数字上的值，并且原四位数是偶数，则统计出满足此条件的个数cnt并把这些四位数按从小到大的顺序存入数组b中，
+ void jsVal()
+{int i,j;
+ int qw,bw,sw,gw;
+ for (i=0;i<MAX;i++)
+   {qw=a[i]/1000;    bw=a[i]%1000/100;
+    sw=a[i]%100/10;  gw=a[i]%10;   if((qw<=bw)&&(bw<=sw)&&(sw<=gw)&&(a[i]%2==0))  b[cnt++]=a[i];}
+ for(i=0;i<cnt-1;i++)
+  for(j=i+1;j<cnt;j++)
+    if(b[i]>b[j]) {qw=b[i];b[i]=b[j];b[j]=qw}
+}
+★☆题目16（字符替换题)
+函数ReadDat()实现从文件IN.DAT中读取一篇英文文章存入到字符串数组xx中，请编制函数StrCharJR()，其函数的功能是：以行为单位把字符串中所有字符的ASCII值右移4位，然后把右移后的字符ASCII值再加上原字符的ASCII值，得到新的字符仍存入原字符串对应的位置上。最后把已处理的字符串仍按行重新存入字符串数组xx中，
+ void StrCharJR()
+{int i,j;
+ for(i=0;i<maxline;i++)  for(j=0;j<strlen(xx[i]);j++)     xx[i][j]+=(xx[i][j]>>4);}
+☆题目17 （亲朋字符替换题）
+函数READDAT（）实现从文件IN.DAT中读取一篇英文文章存入到字符串数组XX中;请编制函数CHA(),其函数功能是:以行为单位把字符串中的第一个字符的ASCII值加第二个字符的ASCII值，得到第一个亲朋字符，第二个字符的ASCII值加第三个字符的ASCII值，得到第二个新字符，依此类推一直处理到最后第二个字符，最后一个字符的ASCII值加原第一个字符的ASCII值，得到最后一个新的字符，得到的新字符分别存放在原字符串对应的位置上。最后把已处理的字符串逆转后按行重新存入字符串数组XX中,
+ void ChA(void)
+{ int i,j;
+  char ch;
+  for(i=0;i<maxline;i++)
+   {ch=xx[i][0];   for(j=0;j<strlen(xx[i])-1;j++)       xx[i][j]+=xx[i][j+1];     xx[i][strlen(xx[i])-1]+=ch;
+ strrev(xx[i]); }}
+☆题目18
+函数ReadDat()实现从文件ENG.IN中读取一篇英文文章，存入到字符串数组xx中；请编制函数encryptChar()，按给定的替代关系对数组xx中的所有字符进行替代，仍存入数组xx的对应的位置上，
+    替代关系：f(p)=p*11 mod 256（p是数组中某一个字符的ASCII值，f(p)是计算后新字符的ASCII值），如果原字符的ASCII值是偶数或计算后f(p)值小于等于32，则该字符不变，否则将f(p)所对应的字符进行替代。
+   void encryptChar()
+{ int i,j;
+  for(i=0;i<maxline;i++) for(j=0;j<strlen(xx[i]);j++)  if(xx[i][j]*11%256<=32||xx[i][j]%2==0) continue;
+    else xx[i][j]=xx[i][j]*11%256;}
+☆题目19（单词个数统计题)
+编写一个函数findStr(char *str,char *substr)，该函数统计一个长度为2的子字符串在另一个字符串中出现的次数。例如，假定输入的字符串为"asd asasdfg asd as zx67 asd mklo"，子字符串为"as"，函数返回值是6。
+int
+findStr(char *str,char *substr)
+{int i,j,len1,len2,cnt=0,flag;
+  len1=strlen(str);
+  len2=strlen(substr);
+  for(i=0;i<len1;i++)
+   { for(j=0;j<len2;j++)
+     if(str[i+j]==substr[j])   flag=1;
+  else {flag=0;break;}
+  if(flag==1)  cnt++;}
+  return cnt;}
+★题目20（Fibonacci数列题)
+编写函数jsValue，它的功能是：求Fibonacci数列中大于t的最小的一个数，结果由函数返回。其中Fibonacci数列F(n)的定义为：
+    F(0)=0,F(1)=1
+    F(n)=F(n-1)+F(n-2)
+   例如：当t=1000时，函数值为：1597。
+   int jsValue(int t)
+{ int f0=0,f1=1,fn;
+  fn=f0+f1;
+  while(fn<=t)
+   { f0=f1;
+     f1=fn;
+     fn=f0+f1;
+   }
+  return fn;
+}
+☆题目21（迭代方法求方程题)
+下列程序prog1.c的功能是：利用以下所示的简单迭代方法求方程：cos(x)-x=0的一个实根。
+    Xn+1=cos(Xn)
+    迭代步骤如下：
+(1)取X1初值为0.0；
+(2)X0=X1，把X1的值赋给X0；
+(3)X1=cos(X0)，求出一个新的X1；
+(4)若X0-X1的绝对值小于0.000001，执行步骤(5)，否则执行步骤(2)；
+(5)所求X1就是方程cos(X)-X=0的一个实根，作为函数值返回。
+  float countValue()
+{ float x0,x1;
+  x1=0.0;
+  do{ x0=x1;
+      x1=cos(x0);
+    }while(fabs(x0-x1)>=0.000001);
+  return x1;}
+★题目22（平方根问题)
+请编写函数countValue()，它的功能是：求n以内（不包括n）同时能被3与7整除的所有自然数之和的平方根s，并作为函数值返回，
+    例如若n为1000时，函数值应为：s=153.909064。
+   double countValue(int n)
+{ int i;
+  double s=0.0;
+  for(i=1;i<n;i++)
+    if(i%21==0) s+=i;
+  return sqrt(s);
+}
+题目23 (实数运算题)
+已知在文件in.dat中存有N个（个数<200）实数，函数readdat()读取这N个实数并存入数组xx中。请编制函数calvalue()，其功能要求：
+1、求出这N个实数的平均值aver；
+2、分别求出这N个实数的整数部分之和sumint以及小数部分之和sumdec，
+   void CalValue(void) 
+{int i;
+ for (i=0;i<N;i++)
+ {sumint+=(long)xx[i];
+ sumdec+=xx[i]-(long)xx[i];
+  aver+=xx[i];}
+ aver/=N;}
+题目24（完全平方数问题)
+下列程序prog1.c的功能是：在三位整数（100至999）中寻找符合条件的整数并依次从小到大存入数组中；它既是完全平方数，又是两位数字相同，例如144、676等。
+ int jsValue(int bb[])
+{int i,j,k=0;
+ int hun,ten,data;
+ for(i=10;i<32;i++)
+  {j=I*I;
+hum=j/100;
+ten=j%100/10;
+data=j%10;
+if(hum==ten||hum==data||ten==data)
+bb[k++]=j;}
+return k;}
+★题目25 （回文数问题）
+下列程序的功能是：寻找并输出11至999之间的数m，它满足m,m2和m3均为回文数。所谓回文数是指其各位数字左右对称的整数，例如121，676，94249等。满足上述条件的数如m=11,m2=121,m3=1331皆为回文数。请编制函数int svalue(long m)实现此功能，如果是回文数，则函数返回1，反之则返回0。最后把结果输出到文件out.dat中。
+  int jsValue(long n)
+{int i,strl,half;
+ char xy[20];
+ ltoa(n,xy,10); strl=strlen(xy);
+ half=strl/2;
+ for(i=0;i<half;i++)
+  if(xy[i]!=xy[--strl]) break;
+  if(i>=half) return 1;
+  else return 0;}
+★☆题目26（整数统计运算题)
+已知在文件IN.DAT中存有若干个（个数<200）四位数字的正整数，函数ReadDat()读取这若干个正整数并存入数组xx中。请编制函数CalValue()，其功能要求：1、求出这文件中共有多少个正整数totNum；2、求这些数右移1位后，产生的新数是偶数的数的个数totCnt，以及满足此条件的这些数(右移前的值)的算术平均值totPjz，
+ void CalValue(void)
+{int i,data;
+for(i=0;i<MAXNUM;i++)
+   if(xx[i]>0) 
+{ totNum++;
+      data=xx[i]>>1;    if(data%2==0){totCnt++;totPjz+=xx[i];} }
+ if(totCnt==0) totPjz=0;
+ else totPjz/=totCnt;}
+题目27（整数各位数字运算题)
+已知数据文件in.dat中存有300个四位数，并已调用读函数ReadDat()把这些数存入数组a中，请编制一函数jsValue()，其功能是：求出千位数上的数减百位数上的数减十位数上的数减个位数上的数大于零的个数cnt，再把所有满足此条件的四位数依次存入数组b中，然后对数组b的四位数按从小到大的顺序进行排序，
+    例如：9123，9-1-2-3>0，则该数满足条件存入数组b中，且个数cnt=cnt+1。
+          9812，9-8-1-2>0，则该数不满足条件忽略。    jsValue()
+{ int i,j,qw,bw,sw,gw;
+  for(i=0;i<300;i++)
+   { qw=a[i]/1000;   bw=a[i]/100%10;
+     sw=a[i]%100/10; gw=a[i]%10;
+     if(qw-bw-sw-gw>0) b[cnt++]=a[i];
+   }
+  for(i=0;i<cnt-1;i++)
+   for(j=i+1;j<cnt;j++)
+     if( b[i]>b[j]) { qw=b[i]; b[i]=b[j]; b[j]=qw;}
+}
+★☆题目28（整数各位打散组合运算题)
+已知数据文件IN.DAT中存有200个四位数，并已调用读函数readDat()把这些数存入数组a中，请考生编制一函数jsVal()，其功能是：把千位数字和十位数字重新组成一个新的十位数ab（新十位数的十位数字是原四位数的千位数字，新十位数的个位数字是原四位数的十位数字），以及把个位数字和百位数字组成另一个新的十位数cd（新十位数的十位数字是原四位数的个位数字，新十位数的个位数字是原四位数的百位数字），如果新组成的两个十位数ab-cd>=0且ab-cd<=10且两个数均是奇数，同时两个新数的十位数字均不为零，则将满足此条件的四位数按从大到小的顺序存入数组b中，并要计算满足上述条件的四位数的个数cnt。
+  void jsVal()
+{int i,j,thou,hun,ten,data,ab,cd;
+for(i=0;i<200;i++)
+   {thou=a[i]/1000;  hun=a[i]%1000/100;
+ten=a[i]%100/10; data=a[i]%10;
+ab=10*thou+ten;  cd=10*data+hun;   if((ab-cd)>=0&&(ab-cd)<=10&&ab%2==1&&cd%2==1&&ab>=10&&cd>=10)
+ b[cnt++]=a[i];}
+ for(i=0;i<cnt-1;i++)
+  for(j=i+1;j<cnt;j++)
+    if(b[i]<b[j]) {thou=b[i]; b[i]=b[j];b[j]=thou;}
+}
+☆题目29（整数各位打散组合运算题)
+已知数据文件IN.DAT中存有200个四位数，并已调用读函数readDat()把这些数存入数组a中，请考生编制一函数jsVal()，其功能是：把千位数字和十位数字重新组成一个新的十位数ab（新十位数的十位数字是原四位数的千位数字，新十位数的个位数字是原四位数的十位数字），以及把个位数字和百位数字组成另一个新的十位数cd（新十位数的十位数字是原四位数的个位数字，新十位数的个位数字是原四位数的百位数字），如果新组成的两个十位数ab-cd>=10且ab-cd<=20且两个数均是偶数，同时两个新数的十位数字均不为零，则将满足此条件的四位数按从大到小的顺序存入数组b中，并要计算满足上述条件的四位数的个数cnt。
+ void jsVal()
+{ int i,j,qw,bw,sw,gw,ab,cd;
+ for(i=0;i<MAX;i++)
+  {qw=a[i]/1000;   bw=a[i]/100%10;
+    sw=a[i]%100/10; gw=a[i]%10;
+    ab=qw*10+sw;    cd=gw*10+bw;  if(ab-cd>=10&&ab-cd<=20&&ab%2==0&&cd%2==0&&qw!=0&&gw!=0)
+   b[cnt++]=a[i]; }
+ for(i=0;i<cnt-1;i++)
+  for(j=i+1;j<cnt;j++)
+   if(b[i]<b[j]) {qw=b[i];b[i]=b[j];b[j]=qw}
+}
+☆题目30（整数统计排序题)
+已知数据文件IN.DAT中存有200个四位数，并已调用读函数readDat()把这些数存入数组a中，请考生编制一函数jsVal()，其功能是：依次从数组a中取出一个四位数，如果该四位数连续小于该四位数以后的五个数且该数是偶数（该四位数以后不满五个数，则不统计），则统计出满足此条件的个数cnt并把这些四位数按从小到大的顺序存入数组b中，
+ void jsVal()
+{int i,j,flag;
+ for(i=0;i<MAX-5;i++)
+  {for(j=i+1;j<=i+5;j++)
+    if(a[i]<a[j]&&a[i]%2==0) flag=1;
+     else { flag=0; break;}
+   if(flag==1) b[cnt++]=a[i];
+  }
+ for(i=0;i<cnt-1;i++)
+  for(j=i+1;j<cnt;j++)
+   if(b[i]>b[j]) {flag=b[i];b[i]=b[j];b[j]=flag;}}
+★☆题目31（结构体运算题)
+已知在文件IN.DAT中存有100个产品销售记录，每个产品销售记录由产品代码dm(字符型4位)，产品名称mc(字符型10位)，单价dj(整型)，数量sl(整型)，金额je(长整型)五部分组成。其中：金额=单价*数量计算得出。函数ReadDat()是读取这100个销售记录并存入结构数组sell中。请编制函数SortDat()，其功能要求：按金额从大到小进行排列，若金额相同，则按产品代码从大到小进行排列， 最终排列结果仍存入结构数组sell中，
+ void SortDat()
+{int i,j;
+ PRO xy;
+ for(i=0;i<99;i++)
+  for(j=i+1;j<100;j++)    if(sell[i].je<sell[j].je||sell[i].je==sell[j].je&&strcmp(sell[i].dm,sell[j].dm)<0)       {xy=sell[i];sell[i]=sell[j];sell[j]=xy;}
+}
+☆题目32（结构体运算题)
+已知在文件IN.DAT中存有100个产品销售记录，每个产品销售记录由产品代码dm(字符型4位)，产品名称mc(字符型10位)，单价dj(整型)，数量sl(整型)，金额je(长整型)五部分组成。其中：金额=单价*数量计算得出。函数ReadDat()是读取这100个销售记录并存入结构数组sell中。请编制函数SortDat()，其功能要求：按产品名称从大到小进行排列，若产品名称相等，则按金额从小到大进行排列，最终排列结果仍存入结构数组sell中
+    void SortDat()
+{int i,j;
+ PRO xy;
+ for(i=0;i<99;i++)
+  for(j=i+1;j<100;j++)    if(strcmp(sell[i].mc,sell[j].mc)<0||strcmp(sell[i].mc,sell[j].mc)==0&&sell[i].je>sell[j].je)       {xy=sell[i];sell[i]=sell[j];sell[j]=xy;}
+}
+★☆题目33（方差运算题)
+请编制函数ReadDat()实现从文件IN.DAT中读取1000个十进制整数到数组xx中；请编制函数Compute()分别计算出xx中偶数的个数even，奇数的平均值ave1，偶数的平均值ave2以及方差totfc的值，
+    计算方差的公式如下：
+             N             2
+    totfc=1/N∑(xx[i]-ave2)
+             i=1
+    设N为偶数的个数，xx[i]为偶数，ave2为偶数的平均值。
+    for(i=0;i<MAX;i++)
+{ fscanf(fp,"%d,",&xx[i]);
+  if((i+1)%10==0)
+  fscanf(fp,"\n");  }
+/*******************************************/
+
+ fclose(fp);
+ return 0;
+}
+
+void Compute(void)
+{ int i,yy[MAX];
+  for(i=0;i<MAX;i++)
+     yy[i]=0;
+  for(i=0;i<MAX;i++)
+     if(xx[i]%2==0) { yy[even++]=xx[i];  ave2+=xx[i];}
+     else { odd++;   ave1+=xx[i];}
+  if(odd==0) ave1=0;
+  else ave1/=odd;
+  if(even==0) ave2=0;
+  else ave2/=even;
+  for(i=0;i<even;i++)
+    totfc+=(yy[i]-ave2)*(yy[i]-ave2)/even;
+}
+
+题目34（素数题)
+无忧id 102 题提供了求素数isPrime()函数
+程序prog1.c的功能是：选出100以上1000之内所有个位数字与十位数字之和被10除所得余数恰是百位数字的素数（如293）。计算并输出上述这些素数的个数cnt以及这些素数值的和sum。 请考生编写函数countValue( )实现程序要求，最后调用函数writeDAT()把结果cnt和sum输出到文件bc10.out中。
+   int isPrime(int m)
+{int i;
+ for(i=2;i<m;i++)
+   if(m % i==0)return 0;
+ return 1;}
+void countValue()
+{ int i,j,bw,sw,gw;
+  for(i=100;i<1000;i++)
+   { bw=i/100;  sw=i%100/10; gw=i%10;          if(isPrime(i)&&(gw+sw)%10==bw)  { cnt++; sum+=i;}}}
+★☆题目35（级数运算题)
+某级数的前两项A1=1，A2=1，以后各项具有如下关系：
+    An=An-2+2An-1（注：n-2与n-1为下标）
+下列程序prog1.c的功能是：要求依次对于整数M=100，1000和10000求出对应的n值，使其满足：Sn<M且Sn+1>=M，这里Sn=A1+A2+...+An，并依次把n值存入数组单元b[0]，b[1]和b[2]中，请编制jsValue()函数来实现此功能，
+jsValue()
+{int a1=1,a2=1,a12,sn,k=2;
+ sn=a1+a2;
+ while(1)
+  {a12=a1+2*a2;
+   if(sn<100&&sn+a12>=100) b[0]=k;
+   if(sn<1000&&sn+a12>=1000) b[1]=k;   if(sn<10000&&sn+a12>=10000) {b[2]=k;break;}
+   sn=sn+a12;
+   a1=a2;a2=a12;
+   k++; }}
+运行结果为：
+M=100,n=6
+M=1000,n=9
+M=10000,n=11
+★题目36（字符替换题)
+函数ReadDat()实现从文件ENG.IN中读取一篇英文文章，存入到字符串数组xx中；请编制函数encryptChar()，按给定的替代关系对数组xx中的所有字符进行替代，仍存入数组xx的对应的位置上，
+　　替代关系：f(p)=p*11 mod 256（p是数组中某一个字符的ASCII值，f(p)是计算后新字符的ASCII值），如果计算后f(p)值小于等于32或f(p)对应的字符是数字0至9，则该字符不变，否则将f(p)所对应的字符进行替代。
+　void encryptChar()
+{ int i,j;
+  for(i=0;i<maxline;i++) for(j=0;j<strlen(xx[i]);j++)    if(xx[i][j]*11%256<=32||xx[i][j]*11%256>='0'&&xx[i][j]*11%256<='9') continue;
+    else xx[i][j]=xx[i][j]*11%256;}
+题目37（字符替换题)
+函数ReadDat()实现从文件ENG.IN中读取一篇英文文章，存入到字符串数组xx中；请编制函数encryptChar()，按给定的替代关系对数组xx中的所有字符进行替代，仍存入数组xx的对应的位置上，最后调用函数WriteDat()把结果xx输出到文件PS7.DAT中。
+　　替代关系：f(p)=p*11 mod 256（p是数组中某一个字符的ASCII值，f(p)是计算后新字符的ASCII值），如果原字符是大写字母或计算后f(p)值小于等于32，则该字符不变，否则将f(p)所对应的字符进行替代。
+　void encryptChar()
+{ int i,j;
+  for(i=0;i<maxline;i++)   for(j=0;j<strlen(xx[i]);j++)      if(xx[i][j]*11%256<=32||xx[i][j]>='A'&&xx[i][j]<='Z') continue;
+ else xx[i][j]=xx[i][j]*11%256;}
+题目38（结构体运算题)
+已知在文件IN.DAT中存有100个产品销售记录，每个产品销售记录由产品代码dm(字符型4位)，产品名称mc(字符型10位)，单价dj(整型)，数量sl(整型)，金额je(长整型)五部分组成。其中：金额=单价*数量计算得出。函数ReadDat()是读取这100个销售记录并存入结构数组sell中。请编制函数SortDat()，其功能要求：按产品代码从小到大进行排列，若产品代码相同，则按金额从小到大进行排列，最终排列结果仍存入结构数组sell中，
+ void SortDat()
+{int i,j;
+ PRO xy;
+ for(i=0;i<99;i++)
+  for(j=i+1;j<100;j++)  if(strcmp(sell[i].dm,sell[j].dm)>0||strcmp(sell[i].dm,sell[j].dm)==0&&sell[i].je>sell[j].je)       {xy=sell[i];sell[i]=sell[j];sell[j]=xy;}
+}
+★☆题目39（选票问题)
+现有一个10个人100行的选票数据文件IN.DAT，其数据存放的格式是每条记录的长度均为10位，第一位表示第一个人的选中情况，第二位表示第二个人的选中情况，依此类推 ：内容均为字符0和1，1表示此人被选中，0表示此人未被选中，全选或不选均为无效的选票。给定函数ReadDat()的功能是把选票数据读入到字符串数组xx中。请编制函数CountRs()来统计每个人的选票数并把得票数依次存入yy[0]到yy[9]中。
+ void CountRs(void)
+{ int i,j,count;
+  for(i=0;i<100;i++)
+   { count=0;
+     for(j=0;j<10;j++)
+       if(xx[i][j]=='1') count++;
+     if(count==0||count==10) continue;
+     for(j=0;j<10;j++)
+       if(xx[i][j]=='1') yy[j]++; }}
+☆题目40（整数统计运算题)
+已知在文件IN.DAT中存有若干个（个数<200）四位数字的正整数，函数ReadDat()读取这若干个正整数并存入数组xx中。请编制函数CalValue()，其功能要求：
+1、求出这文件中共有多少个正整数totNum；
+2、求这些数中的各位数字之和是偶数的数的个数totCnt，
+以及满足此条件的这些数的算术平均值totPjz，
+ void CalValue(void)
+{ int i,qw,bw,sw,gw;
+  for(i=0;i<MAXNUM;i++)
+if(xx[i]>0) 
+{ totNum++;
+       qw=xx[i]/1000;
+       bw=xx[i]/100%10;
+       sw=xx[i]%100/10;
+       gw=xx[i]%10;
+      if((qw+bw+sw+gw)%2==0) {totCnt++; totPjz+=xx[i];}}
+  if(totCnt==0) totPjz=0;
+  else totPjz/=totCnt;}
+☆题目41（SIX/NINE问题)
+下列程序prog1.c的功能是：计算出自然数SIX和NINE，它们满足的条件是SIX+SIX+SIX=NINE+NINE的个数cnt以及满足此条件所有的SIX与NINE的和SUM。请编写函数countValue()实现程序的要求，    其中的S，I，X，N，E各代表一个十进制数字。
+  void countValue()
+{ int s,i,x,n,e,six,nine;
+  for(s=1;s<10;s++)
+   for(i=0;i<10;i++)
+    for(x=0;x<10;x++)
+     for(n=1;n<10;n++)
+      for(e=0;e<10;e++)
+       { six=s*100+i*10+x;        nine=n*1000+i*100+n*10+e;
+ if(3*six==2*nine)         { cnt++;sum+=six+nine;}}}
+题目42 结构体运算题
+已知在文件IN.DAT中存有100个产品销售记录，每个产品销售记录由产品代码dm(字符型4位)，产品名称mc(字符型10位)，单价dj(整型)，数量sl(整型)，金额je(长整型)五部分组成。其中：金额=单价*数量计算得出。函数ReadDat()是读取这100个销售记录并存入结构数组sell中。请编制函数SortDat()，其功能要求：按产品名称从大到小进行排列，若产品名称相等，则按金额从大到小进行排列，最终排列结果仍存入结构数组sell中，
+  void SortDat()
+{int i,j;
+ PRO xy;
+ for(i=0;i<99;i++)
+  for(j=i+1;j<100;j++)   if(strcmp(sell[i].mc,sell[j].mc)<0||strcmp(sell[i].mc,sell[j].mc)==0&&sell[i].je<sell[j].je)      {xy=sell[i];sell[i]=sell[j];sell[j]=xy;}}
+★题目43（字符排序题）
+无忧id 82题(只是将结果按“从大到小”排序)
+函数ReadDat()实现从文件in.dat中读取20行数据存放到字符串数组xx中（每行字符串长度均小于80）。请编制函数jsSort()，其函数的功能是：以行为单位对字符串变量的下标为奇数的字符按其ASCII值从小到大的顺序进行排序，排序后的结果仍按行重新存入字符串数组xx中，
+　　例如：位置　　　0　1　2　3　4　5　6　7　
+　源字符串　a  b  c  d  e  f  g  h
+    则处理后字符串  a  h  c  f  e  d  g  b
+　　void jsSort()
+{int i,j,k,strl;
+ char ch;
+ for(i=0;i<20;i++)
+  { strl=strlen(xx[i]);
+    for(j=1;j<strl-2;j=j+2)
+    for(k=j+2;k<strl;k=k+2)
+	  if(xx[i][j]>xx[i][k])  { ch=xx[i][j];xx[i][j]=xx[i][k];xx[i][k]=ch;} }}
+★☆题目44（字符串左右排序交换题 ）
+函数ReadDat()实现从文件in.dat中读取20行数据存放到字符串数组xx中（每行字符串长度均小于80）。请编制函数jsSort()，其函数的功能是：以行为单位对字符串按给定的条件进行排序，排序后的结果仍按行重新存入字符串数组xx中，
+　　条件：从字符串中间一分为二，左边部分按字符的ASCII值降序排序，排序后左边部分与右边部分进行交换。如果原字符串长度为奇数，则最中间的字符不参加处理，字符仍放在原位置上。
+　例如：位置0 1 2　3　4　5　6　7　8
+　源字符串　a  b  c  d  h  g  f e 
+             1  2  3  4  9  8  7  6  5
+    则处理后字符串  h  g  f  e  d  c  b  a
+                   8  7  6  5  9  4  3  2  1
+　　void jsSort()
+{ int i,j,k,strl,half;
+  char temp;
+  for(i=0;i<20;i++)
+   { strl=strlen(xx[i]);
+     half=strl/2;
+     for(j=0;j<half-1;j++)
+      for(k=j+1;k<half;k++)
+      if(xx[i][j]<xx[i][k])
+           { temp=xx[i][j]; xx[i][j]=xx[i][k]; xx[i][k]=temp;}     for(j=half-1,k=strl-1;j>=0;j--,k--)
+       {temp=xx[i][j]; xx[i][j]=xx[i][k]; xx[i][k]=temp;}}}
+★题目45（数字统计排序题 ）
+已知数据文件IN.DAT中存有200个四位数，并已调用读函数readDat()把这些数存入数组a中，请考生编制一函数jsVal()，其功能是：依次从数组a中取出一个四位数，如果该四位数连续大于该四位数以前的五个数且该数是偶数（该四位数以前不满五个数，则不统计），则统计出满足此条件的个数cnt并把这些四位数按从大到小的顺序存入数组b中，
+   void jsVal()
+{int i,j,flag;
+ for(i=5;i<MAX;i++)
+  {for(j=i-5;j<i;j++)
+    if(a[i]>a[j]&&a[i]%2==0) flag=1;
+     else { flag=0; break;}
+   if(flag==1) b[cnt++]=a[i]; }
+ for(i=0;i<cnt-1;i++)
+  for(j=i+1;j<cnt;j++)
+   if(b[i]<b[j]) {flag=b[i];b[i]=b[j];b[j]=flag;}}
+☆题目46（数字统计排序题 ）
+已知数据文件IN.DAT中存有200个四位数，并已调用读函数readDat()把这些数存入数组a中，请考生编制一函数jsVal()，其功能是：依次从数组a中取出一个四位数，如果该四位数连续大于该四位数以前的五个数且该数是奇数，且该数必须能被7整除（该四位数以前不满五个数，则不统计），则统计出满足此条件的个数cnt并把这些四位数按从大到小的顺序存入数组b中，
+   void jsVal()
+{ int i,j,flag;
+  for(i=5;i<MAX;i++)
+   {for(j=i-5;j<i;j++)       if(a[i]>a[j]&&a[i]%2&&a[i]%7==0) flag=1;
+	 else { flag=0;break;}
+    if(flag==1) b[cnt++]=a[i];}
+  for(i=0;i<cnt-1;i++)
+   for(j=i+1;j<cnt;j++)
+     if(b[i]<b[j]) {flag=b[i];b[i]=b[j]; b[j]=flag;}}
+题目47（结构体运算题 ）
+已知在文件IN.DAT中存有100个产品销售记录，每个产品销售记录由产品代码dm(字符型4位)，产品名称mc(字符型10位)，单价dj(整型)，数量sl(整型)，金额je(长整型)五部分组成。其中：金额=单价*数量计算得出。函数ReadDat()是读取这100个销售记录并存入结构数组sell中。请编制函数SortDat()，其功能要求：按金额从大到小进行排列，若金额相等，则按产品代码从小到大进行排列，最终排列结果仍存入结构数组sell中，
+   void SortDat()
+{int i,j;
+ PRO xy;
+ for(i=0;i<99;i++)
+  for(j=i+1;j<100;j++)  if(sell[i].je<sell[j].je||sell[i].je==sell[j].je&&strcmp(sell[i].dm,sell[j].dm)>0)      {xy=sell[i];sell[i]=sell[j];sell[j]=xy;}
+}
+☆题目48（整数各位数字运算题 ）
+已知数据文件in.dat中存有300个四位数，并已调用读函数ReadDat()把这些数存入数组a中，请编制一函数jsValue()，其功能是：求出千位数上的数加个位数上的数等于百位数上的数加十位数上的数的个数cnt，再把所有满足此条件的四位数依次存入数组b中，然后对数组b的四位数按从小到大的顺序进行排序，
+    例如：6712，6+2=7+1，则该数满足条件存入数组b中，且个数cnt=cnt+1。
+          8129，8+9<>1+2，则该数不满足条件忽略。
+  jsValue()
+{int i,qw,bw,sw,gw,j;
+ for(i=0;i<300;i++)
+ {qw=a[i]/1000;    bw=a[i]%1000/100;
+  sw=a[i]%100/10;  gw=a[i]%10;
+  if(qw+gw==bw+sw) b[cnt++]=a[i]; }
+ for(i=0;i<cnt-1;i++)
+  for(j=i+1;j<cnt;j++)
+   if(b[i]>b[j]) {qw=b[i]; b[i]=b[j]; b[j]=qw;}}
+题目49（整数各位数字运算题 ）
+已知数据文件in.dat中存有300个四位数，并已调用读函数ReadDat()把这些数存入数组a中，请编制一函数jsValue()，其功能是：求出千位数上的数减百位数减十位数上的数减个位数上的数大于零的个数cnt，再求出所有满足此条件的四位数平均值pjz1，以及不满足此条件的四位数平均值pjz2，   例如：9123,9-1-2-3>0，则该数满足条件计算平均值pjz1，且个数cnt=cnt+1。9812,9-8-1-2<0,则该数不满足条件计算平均值pjz2。
+      程序中已定义数组：a[300]，已定义变量：cnt,pjz1,pjz2。
+   jsValue()
+{int i,qw,bw,sw,gw,n=0;
+ for(i=0;i<300;i++)
+   {qw=a[i]/1000;    bw=a[i]%1000/100;
+    sw=a[i]%100/10;  gw=a[i]%10;
+    if(qw-bw-sw-gw>0) {cnt++;pjz1+=a[i];}
+    else {n++;pjz2+=a[i];} }
+ if(cnt==0) pjz1=0;
+ else pjz1/=cnt;
+ if(n==0) pjz2=0;
+ else pjz2/=n;} 
+题目50（字符串左右排序交换题 ）
+函数ReadDat()实现从文件in.dat中读取20行数据存放到字符串数组xx中（每行字符串长度均小于80）。请编制函数jsSort()，其函数的功能是：以行为单位对字符串按给定的条件进行排序，排序后的结果仍按行重新存入字符串数组xx中，　　条件：从字符串中间一分为二，左边部分按字符的ASCII值升序排序，排序后左边部分与右边部分进行交换。如果原字符串长度为奇数，则最中间的字符不参加处理，字符仍放在原位置上。
+　　例如：位置　　0　1　2　3　4　5　6　7　8
+　　　　　源字符串　d  c  b  a  h  g  f  e 
+                    4  3  2  1  9  8  7  6  5
+    则处理后字符串  h  g  f  e  a  b  c  d
+                    8  7  6  5  9  1  2  3  4
+　void jsSort()
+{ int i,j,k,strl,half;
+  char temp;
+  for(i=0;i<20;i++)
+   { strl=strlen(xx[i]);
+     half=strl/2;
+     for(j=0;j<half-1;j++)
+      for(k=j+1;k<half;k++)
+      if(xx[i][j]>xx[i][k])
+     {temp=xx[i][j]; xx[i][j]=xx[i][k]; xx[i][k]=temp;}     for(j=half-1,k=strl-1;j>=0;j--,k--)
+     {temp=xx[i][j]; xx[i][j]=xx[i][k]; xx[i][k]=temp;}}}
+★☆题目51（整数各位打散组合运算题）
+没有提供求素数函数isprime() ,可自己编制
+已知数据文件IN.DAT中存有200个四位数，并已调用读函数readDat()把这些数存入数组a中，请考生编制一函数jsVal()，其功能是：把千位数字和十位数字重新组成一个新的十位数（新十位数的十位数字是原四位数的千位数字，新十位数的个位数字是原四位数的十位数字），以及把个位数字和百位数字组成另一个新的十位数（新十位数的十位数字是原四位数的个位数字，新十位数的个位数字是原四位数的百位数字），如果新组成的两个十位数均是素数且新数的十位数字均不为零，则将满足此条件的四位数按从大到小的顺序存入数组b中，并要计算满足上述条件的四位数的个数cnt。
+int isprime(int m)
+{int i;
+ for(i=2;i<=m/2;i++)
+   if(m%i==0) return 0;
+ return 1;
+}
+void jsVal()
+{int i,j,qw,bw,sw,gw;
+ int ab,cd;
+ for(i=0;i<200;i++)
+   {qw=a[i]/1000;     bw=a[i]%1000/100;
+    sw=a[i]%100/10;  gw=a[i]%10;
+    ab=10*qw+sw;   cd=10*gw+bw;   if(isprime(ab)&&isprime(cd)&&ab>=10&&cd>=10) b[cnt++]=a[i]; }
+ for(i=0;i<cnt-1;i++)
+   for(j=i+1;j<cnt;j++)
+     if(b[i]<b[j]) {qw=b[i];b[i]=b[j];b[j]=qw}
+}
+题目52（整数各位打散组合运算题）
+已知数据文件IN.DAT中存有200个四位数，并已调用读函数readDat()把这些数存入数组a中，请考生编制一函数jsVal()，其功能是：把千位数字和个位数字重新组成一个新的十位数（新十位数的十位数字是原四位数的千位数字，新十位数的个位数字是原四位数的个位数字），以及把百位数字和十位数字组成另一个新的十位数（新十位数的十位数字是原四位数的百位数字，新十位数的个位数字是原四位数的十位数字），如果新组成的两个十位数均是奇数并且两个十位数中至少有一个数能被5整除，同时两个新数的十位数字均不为零，则将满足此条件的四位数按从大到小的顺序存入数组b中，并要计算满足上述条件的四位数的个数cnt。
+void jsVal()
+{int i,thou,hun,ten,data,j;
+ int ab,cd;
+ for(i=0;i<MAX;i++)
+   {thou=a[i]/1000;    hun=a[i]%1000/100;
+    ten=a[i]%100/10;   data=a[i]%10;
+    ab=10*thou+data;    cd=10*hun+ten;   if(ab%2&&cd%2&&(ab%5==0||cd%5==0)&&ab>=10&&cd>=10) b[cnt++]=a[i];  }
+  for(i=0;i<cnt-1;i++)
+    for(j=i+1;j<cnt;j++)
+       if(b[i]<b[j])  {data=b[i];b[i]=b[j];b[j]=data;}}
+☆题目53（整数各位数字运算题）
+已知数据文件in.dat中存有300个四位数，并已调用读函数ReadDat()把这些数存入数组a中，请编制一函数jsValue()，其功能是：求出千位数上的数减百位数上的数减十位数上的数减个位数上的数大于零的个数cnt，再把所有满足此条件的四位数依次存入数组b中，然后对数组b的四位数按从小到大的顺序进行排序，    例如：9123，9-1-2-3>0，则该数满足条件存入数组b中，且个数cnt=cnt+1。
+          9812，9-8-1-2>0，则该数不满足条件忽略。
+ jsValue()
+{ int i,j,qw,bw,sw,gw;
+  for(i=0;i<300;i++)
+   {qw=a[i]/1000; bw=a[i]/100%10; 
+ sw=a[i]%100/10; gw=a[i]%10;
+     if((qw-bw-sw-gw)>0) b[cnt++]=a[i]; }
+  for(i=0;i<cnt-1;i++)
+    for(j=i+1;j<cnt;j++)
+      if(b[i]>b[j]) { qw=b[i];b[i]=b[j];b[j]=qw;}}
+题目54（整数各位数运算排序题）
+已知数据文件in.dat中存有300个四位数，并已调用读函数ReadDat()把这些数存入数组a中，请编制一函数jsValue()，其功能是：求出千位数上的数加百位数上的数等于十位数上的数加个位数上的数的个数cnt，再把所有满足此条件的四位数依次存入数组b中，然后对数组b的四位数按从大到小的顺序进行排序，
+    例如：7153，7+1=5+3，则该数满足条件存入数组b中，且个数cnt=cnt+1。
+          8129，8+1<>2+9，则该数不满足条件忽略。
+    jsValue()
+{ int i,j,qw,bw,sw,gw;
+  for(i=0;i<300;i++)
+   {qw=a[i]/1000;   bw=a[i]/100%10;
+     sw=a[i]%100/10; gw=a[i]%10;
+     if(qw+bw==sw+gw) b[cnt++]=a[i];}
+  for(i=0;i<cnt-1;i++)
+    for(j=i+1;j<cnt;j++)
+      if(b[i]<b[j]) { qw=b[i];b[i]=b[j];b[j]=qw;}}
+题目55（素数统计排序题）
+已知数据文件in.dat中存有300个四位数，并已调用读函数ReadDat()把这些数存入数组a中，请编制一函数jsValue()，其功能是：求出所有这些四位数是素数的个数cnt，再把所有满足此条件的四位数依次存入数组b中，然后对数组b的四位数按从小到大的顺序进行排序，最后调用写函数writeDat()把结果输出到out.dat文件。
+    例如：5591是素数，则该数满足条件存入数组b中，且个数cnt=cnt+1。9812是非素数，则该数不满足条件忽略。
+  int isP(int m){
+  int i;
+  for(i=2;i<m;i++)
+    if(m%i==0)return 0;
+    return 1;}
+
+jsValue()
+{int i,j,value;
+ for(i=0;i<300;i++)
+   if(isP(a[i])) b[cnt++]=a[i];
+ for(i=0;i<cnt-1;i++)
+   for(j=i+1;j<cnt;j++)
+     if(b[i]>b[j])  {value=b[i]; b[i]=b[j]; b[j]=value;}}
+题目56（字符替换题）
+函数ReadDat()实现从文件ENG.IN中读取一篇英文文章，存入到字符串数组xx中；请编制函数encryptChar()，按给定的替代关系对数组xx中的所有字符进行替代，仍存入数组xx的对应的位置上，
+替代关系：f(p)=p*11mod 256 （p是数组中某一个字符的ASCII值，f(p)是计算后新字符的ASCII值），如果计算后f(p)值小于等于32或f(p)对应的字符是小写字母，则该字符不变，否则将f(p)所对应的字符进行替代。
+void encryptChar()
+{ int i,j;
+  for(i=0;i<maxline;i++)   for(j=0;j<strlen(xx[i]);j++)     if(xx[i][j]*11%256<=32||xx[i][j]*11%256>='a'&&xx[i][j]*11%256<='z') continue;
+      else xx[i][j]=xx[i][j]*11%256;}
+★	题目57（出圈题）
+设有n个人围坐一圈并按顺时针方向从1到n编号,从第s个人开始进行1到m的报数, 报数到第m个人, 此人出圈, 再从他的下一个人重新开始1到m的报数,如此进行下去直到所有的人都出圈为止。现要求按出圈次序,给出这n个人的顺序表p。请考生编制函数Josegh()实现此功能并调用函数WriteDat()把编号按照出圈的顺序输出到OUT.DAT文件中。
+注意：第1个出圈的编号存放在p[0]中,第2个出圈的编号存放在p[1]中,直至第n个出圈的编号存放在p[n-1]中。
+    设 n = 100, s = 1, m = 10进行编程。
+    void Josegh(void)
+{ int i,j,s1,w,q[100];
+  for(i=0;i<n;i++)  q[i]=0;
+  s1=s;
+  for(i=1;i<=n;i++) p[i-1]=i;
+  for(i=n; i>=2; i--)
+   { s1=(s1+m-1)%i;
+     if(s1==0) s1=i;
+     w=p[s1-1];
+     for(j=s1; j<i; j++)  p[j-1]=p[j];
+     p[i-1]=w;}
+   for(i=0,j=n-1;i<n,j>=0;i++,j--)    q[j]=p[i];
+   for(i=0;i<n;i++)
+     p[i]=q[i];}
+题目58（选票问题）现有一个10个人100行的选票数据文件IN.DAT，其数据存放的格式是每条记录的长度均为10位，第一位表示第一个人的选中情况，第二位表示第二个人的选中情况，依此类推：内容均为字符0和1，1表示此人被选中，0表示此人未被选中，若一张选票人数小于等于5个人时被认为无效的选票。给定函数ReadDat()的功能是把选票数据读入到字符串数组xx中。请编制函数CountRs()来统计每个人的选票数并把得票数依次存入yy[0]到yy[9]中。void CountRs(void)
+ { int i,j,count;
+  for(i=0;i<100;i++)
+   { count=0;
+     for(j=0;j<10;j++)
+       if(xx[i][j]=='1') count++;
+     if(count<=5) continue;
+     for(j=0;j<10;j++)
+        if(xx[i][j]=='1') yy[j]++;}}
+★题目59（整数各位打散组合运算题题）
+已知数据文件IN.DAT中存有200个四位数，并已调用读函数readDat()把这些数存入数组a中，请考生编制一函数jsVal()，其功能是：把千位数字和十位数字重新组成一个新的十位数ab（新十位数的十位数字是原四位数的千位数字，新十位数的个位数字是原四位数的十位数字），以及把个位数字和百位数字组成另一个新的十位数cd（新十位数的十位数字是原四位数的个位数字，新十位数的个位数字是原四位数的百位数字），如果新组成的两个十位数ab<cd，ab必须是奇数且不能被5整除，cd必须是偶数，同时两个新数的十位数字均不为零，则将满足此条件的四位数按从大到小的顺序存入数组b中，并要计算满足上述条件的四位数的个数cnt。    void jsVal()
+{int i,thou,hun,ten,data,j;
+ int ab,cd;
+ for(i=0;i<MAX;i++)
+  {thou=a[i]/1000;  hun=a[i]/100%10;
+   ten=a[i]%100/10; data=a[i]%10;
+   ab=10*thou+ten;  cd=10*data+hun;   if(((ab-cd)<0&&ab%2==1&&ab%5!=0)&&cd%2!=1&&ab>=10&&cd>=10)
+     {b[cnt]=a[i];cnt++;}}
+ for(i=0;i<cnt-1;i++)
+   for(j=i+1;j<cnt;j++)
+     if(b[i]<b[j]) {data=b[i];b[i]=b[j];b[j]=data;}}
+题目60（整数运算排序题）
+在文件in.dat中有200组数据，每组有3个数，每个数均是三位数。函数ReadDat()读取这200组数据存放到结构数组aa中，请编制函数jsSort()，其函数的功能是：要求在200组数据中找出条件为每组中的第二个数大于第一个数加第三个数的之和，其中满足条件的组数作为函数jsSort() 的返回值，同时把满足条件的数据存入结构数组bb中，再对bb中的数据按照每组数据的第二个数加第三个之和的大小进行降序排列（第二个数加第三个数的和均不相等），排序后的结果仍重新存入结构数组bb中，
+    int jsSort()
+{int i, j, cnt=0;
+ data ch;
+ for(i=0;i<200;i++)  if(aa[i].x2>aa[i].x1+aa[i].x3) bb[cnt++]=aa[i];
+ for(i=0;i<cnt-1;i++)
+   for(j=i+1;j<cnt;j++)    if(bb[i].x2+bb[i].x3<bb[j].x2+bb[j].x3) { ch=bb[i];bb[i]=bb[j];bb[j]=ch;} return cnt;}
+★题目61（结构体运算题）
+已知在文件IN.DAT中存有100个产品销售记录，每个产品销售记录由产品代码dm(字符型4位)，产品名称mc(字符型10位)，单价dj(整型)，数量sl(整型)，金额je(长整型)五部分组成。其中：金额=单价*数量计算得出。函数ReadDat()是读取这100个销售记录并存入结构数组sell中。请编制函数SortDat()，其功能要求：按金额从小到大进行排列，若金额相同，则按产品代码从大到小进行排列，最终排列结果仍存入结构数组sell中，
+  void SortDat()
+{int i,j;
+ PRO xy;
+ for(i=0;i<99;i++)
+  for(j=i+1;j<100;j++)   if(sell[i].je>sell[j].je||sell[i].je==sell[j].je&&strcmp(sell[i].dm,sell[j].dm)<0)
+{xy=sell[i]; sell[i]=sell[j]; sell[j]=xy;}}
+☆题目62（字符替换题）
+无忧id  9 题条件微有不同
+函数ReadDat()实现从文件ENG.IN中读取一篇英文文章，存入到字符串数组xx中；请编制函数encryptChar()，按给定的替代关系对数组xx中的所有字符进行替代，仍存入数组xx的对应的位置上，　　替代关系：f(p)=p*13 mod 256（p是数组中某一个字符的ASCII值，f(p)是计算后新字符的ASCII值），　　void encryptChar()
+{ int i,j;
+  for(i=0;i<maxline;i++)    for(j=0;j<strlen(xx[i]);j++)     if(xx[i][j]*13%256<=32||(xx[i][j]*13%256)%2==0) continue;else xx[i][j]=xx[i][j]*13%256;}
+★题目63（字符串移位题）
+程序prog1.c的功能是：把 s 字符串中的所有字符左移一个位置，串中的第一个字符移到最后。请考生编写函数chg(char *s)实现程序要求，最后调用函数readwriteDAT( )把结果输出到bc2.out文件中。
+    例如：s字符串中原有内容为：Mn.123xyZ，则调用该函数后，结果为：n.123xyZM。
+    void chg(char *s)
+{ int i;
+  Char ch=*s;  for(i=0;i<strlen(s)-1;i++)
+  s[i]=s[i+1];
+s[strlen(s)-1]=ch;}
+★☆题目64（素数题）
+下列程序的功能是：找出所有100以内（含100）满足I，I+4，I+10都是素数的整数I（I+10也在100以内）的个数cnt以及这些I之和sum。请编写函数countValue()实现程序要求的功能，最后调用函数writeDat()把结果cnt和sum输出到文件out.dat中。
+  int isPrime(int m)
+{ int i;
+ for(i=2; i<m; i++)
+  if(m % i ==0) return 0 ;
+ return 1;}
+void countValue()
+{int i;
+ for(i=2;i<=90;i++)  if(isPrime(i)&&isPrime(i+4)&&isPrime(i+10))
+ {cnt++;sum+=i;}}
+运行结果为：
+满足条件的整数的个数＝7
+满足条件的整数的和值＝201
+☆题目65（整数统计运算题）
+已知在文件IN.DAT中存有若干个（个数<200）四位数字的正整数，函数ReadDat()读取这若干个正整数并存入数组xx中。请编制函数CalValue()，其功能要求：1、求出这文件中共有多少个正整数totNum；2、求这些数中的各位数字之和是奇数的数的个数totCnt，以及满足此条件的这些数的算术平均值totPjz，
+  void CalValue(void)
+{ int i ,qw,bw,sw,gw;
+  for(i=0;i<MAXNUM;i++)
+if(xx[i]>0) 
+{  totNum++;
+        qw=xx[i]/1000;   bw=xx[i]/100%10;
+        sw=xx[i]%100/10; gw=xx[i]%10;
+        if((qw+bw+sw+gw)%2) {totCnt++; totPjz+=xx[i];}}
+  if(totCnt==0) totPjz=0;
+  else totPjz/=totCnt;}
+★题目66（素数题）
+下列程序prog1.c的功能是：计算500-800区间内素数的个数cnt，并按所求素数的值从大到小的顺序，再计算其间隔加、减之和，即第1个素数-第2个素数+第3个素数-第4个素数+第5个素数...的值sum。请编写函数countValue()实现程序的要求，   int isP(int m)
+{ int i;
+ for(i=2;i<m;i++)
+   if(m % i==0)return 0;
+ return 1;}
+void countValue()
+{int i,j,k=1;
+ for(i=800;i>500;i--)
+if(isP(i)) 
+{cnt++; sum=sum+k*i; 
+ k=k*(-1); }}}
+题目67（整数各位数字运算题）
+下列程序的功能是：选出5000以下符合条件的自然数。条件是：千位数字与百位数字之和等于十位数字与个位数字之和，且千位数字与百位数字之和等于个位数字与千位数字之差的10倍。计算并输出这些四位自然数的个数cnt以及这些数的和sum。请编写函数countValue()实现程序的要求，
+   void countValue()
+{int i,thou,hun,ten,data;
+ for(i=1000;i<5000;i++)
+{thou=i/1000; hun=i%1000/100;
+ten=i%100/10;  data=i%10;  if(thou+hun==ten+data&&thou+hun==(data-thou)*10) {cnt++;sum+=i;} }}
+☆题目68（整数各位数字统计运算题）
+已知数据文件IN.DAT中存有200个四位数，并已调用读函数readDat()把这些数存入数组a中，请考生编制一函数jsVal()，其功能是：如果四位数各位上的数字均是奇数，则统计出满足此条件的个数cnt并把这些四位数按从大到小的顺序存入数组b中。
+   void jsVal()
+{int i,j,thou,hun,ten,data;
+ for(i=0;i<200;i++)
+   {thou=a[i]/1000;  hun=a[i]%1000/100;
+    ten=a[i]%100/10; data=a[i]%10;   if(thou&&thou%2&&hun%2&&ten%2&&data%2)  b[cnt++]=a[i]; }
+ for(i=0;i<cnt-1;i++)
+  for(j=i+1;j<cnt;j++)
+    if(b[i]<b[j]) {thou=b[i]; b[i]=b[j];b[j]=thou;}}
+题目69（整数统计运算题）
+已知数据文件IN.DAT中存有200个四位数，并已调用读函数readDat()把这些数存入数组a中，请考生编制一函数jsVal()，其功能是：把一个四位数的千位数字上的值减去百位数字上的值再减去十位数字上的值最后减去个位数字上的值，如果得出的值大于等于零且原四位数是奇数，则统计出满足此条件的个数cnt并把这些四位数按从小到大的顺序存入数组b中，
+  void jsVal()
+{int i,j,thou,hun,ten,data;
+ for(i=0;i<200;i++)
+   {thou=a[i]/1000;  hun=a[i]%1000/100;
+    ten=a[i]%100/10; data=a[i]%10;   if(thou-hun-ten-data>=0&&a[i]%2)  b[cnt++]=a[i]; }
+ for(i=0;i<cnt-1;i++)
+  for(j=i+1;j<cnt;j++)
+    if(b[i]>b[j]) {thou=b[i]; b[i]=b[j];b[j]=thou;}}
+题目70（整数统计运算题）
+已知在文件IN.DAT中存有若干个（个数<200）四位数字的正整数，函数ReadDat()读取这若干个正整数并存入数组xx中。请编制函数CalValue()，其功能要求：1、求出这文件中共有多少个正整数totNum；2、求这些数右移1位后，产生的新数是奇数的数的个数totCnt，以及满足此条件的这些数（右移前的值）的算术平均值totPjz，
+   void CalValue(void)
+{int i,data;
+for(i=0;i<MAXNUM;i++)
+   if(xx[i]>0) 
+{ totNum++;
+      data=xx[i]>>1; if(data%2){totCnt++;totPjz+=xx[i];}}
+ if(totCnt==0) totPjz=0;
+ else totPjz/=totCnt;}
+★题目71（字符串左右排序题）
+函数ReadDat()实现从文件in.dat中读取20行数据存放到字符串数组xx中（每行字符串长度均小于80）。请编制函数jsSort()，其函数的功能是：以行为单位对字符串按给定的条件进行排序，排序后的结果仍按行重新存入字符串数组xx中，最后调用函数WriteDat()把结果xx输出到文件out.dat中。
+　　条件：从字符串中间一分为二，左边部分按字符的ASCII值降序排序，右边部分按字符的ASCII值升序排序。如果原字符串长度为奇数，则最中间的字符不参加排序，字符仍放在原位置上。
+　　例如：位置　　　0　1　2　3　4　5　6　7　8
+　　　　　源字符串　a  b  c  d  h  g  f  e 
+                   1  2  3  4  9  8  7  6  5
+    则处理后字符串  d  c  b  a  e  f  g  h
+                   4  3  2  1  9  5  6  7  8
+　　void jsSort()
+{int i,j,k,strl,half;
+ char ch;
+ for(i=0;i<20;i++)
+  { strl=strlen(xx[i]);
+    half=strl/2;
+    for(j=0;j<half-1;j++)
+     for(k=j+1;k<half;k++)
+       if(xx[i][j]<xx[i][k]) { ch=xx[i][j];xx[i][j]=xx[i][k];xx[i][k]=ch;}
+    if(strl%2) half++;
+   for(j=half;j<strl-1;j++)
+      for(k=j+1;k<strl;k++)
+       if(xx[i][j]>xx[i][k]) {ch=xx[i][j];xx[i][j]=xx[i][k];xx[i][k]=ch;}}}
+题目72（整数各位打散组合运算题）
+已知数据文件IN.DAT中存有200个四位数，并已调用读函数readDat()把这些数存入数组a中，请考生编制一函数jsVal()，其功能是：把个位数字和千位数字重新组成一个新的十位数（新十位数的十位数字是原四位数的个位数字，新十位数的个位数字是原四位数的千位数字），以及把百位数字和十位数字组成另一个新的十位数（新十位数的十位数字是原四位数的百位数字，新十位数的个位数字是原四位数的十位数字），如果新组成的两个十位数均是偶数并且两个十位数中至少有一个数能被9整除，同时两个新数的十位数字均不为零，则将满足此条件的四位数按从大到小的顺序存入数组b中，并要计算满足上述条件的四位数的个数cnt。
+    void jsVal()
+{int i,j,thou,hun,ten,data,ab,cd;
+ for(i=0;i<200;i++)
+  {thou=a[i]/1000;    hun=a[i]/100%10;
+   ten=a[i]%100/10;  data=a[i]%10;
+   ab=10*data+thou;  cd=10*hun+ten;   if((ab%9==0||cd%9==0)&&ab%2==0&&cd%2==0&&hun!=0&&data!=0)
+ {b[cnt]=a[i];cnt++;}}
+  for(i=0;i<cnt-1;i++)
+    for(j=i+1;j<cnt;j++)
+      if(b[i]<b[j]) {data=b[i];b[i]=b[j];b[j]=data;}}
+★题目73（ 字符替换题）
+函数ReadDat()实现从文件IN.DAT中读取一篇英文文章存入到字符串数组xx中，请编制函数ConverCharD()，其函数的功能是：以行为单位把字符串中的所有小写字母改写成该字母的上一个字母，如果是字母a，则改写成字母z。大写字母仍为大写字母，小写字母仍为小写字母，其它字符不变。
+    例：原文：Adb.Bcdza
+              abck.LLhj
+        结果：Aca.Bbcyz
+              zabj.LLgi
+    void ConvertCharD(void)
+{ int i,j;
+  for(i=0;i<maxline;i++)  { for(j=0;j<strlen(xx[i]);j++)
+if(xx[i][j]=='a') xx[i][j]='z';
+        else if(xx[i][j]>='b'&&xx[i][j]<='z') xx[i][j]-=1;}}
+★题目74（字符ASCII值移位替换题）
+函数ReadDat()实现从文件IN.DAT中读取一篇英文文章存入到字符串数组xx中，请编制函数StrCharJL()，其函数的功能是：以行为单位把字符串中的所有字符的ASCII值左移4位,低位补0，如果左移后，其字符的ASCII值小于等于32或大于100，则原字符保持不变，否则就把左移后的字符ASCII值再加上原字符ASCII值，得到新的字符仍存入原字符串对应的位置上。最后把已处理的字符串仍按行重新存入字符串数组xx中，
+    char xx[50][80];
+int maxline=0;
+ int ReadDat(void);
+void WriteDat(void);
+void StrCharJL(void)
+{ int i,j;
+  char c;
+  for(i=0;i<maxline;i++)  for(j=0;j<strlen(xx[i]);j++)
+{ c=xx[i][j]<<4;
+        if(!(c<=32||c>100)) xx[i][j]+=c;  }}
+★☆题目75 （整数各位数运算及排序题）
+在文件in.dat中有200组数据，每组有3个数，每个数均是三位数。函数ReadDat()读取这200组数据存放到结构数组aa中，请编制函数jsSort()，其函数的功能是：要求在200组数据中找出条件为每组中的第一个数大于第二个数加第三个数的和，其中满足条件的组数作为函数jsSort()的返回值，同时把满足条件的数据存入结构数组bb中，再对bb中的数据按照每组数据的第一个数加第三个之和的大小进行升序排列（第一个数加第三个数的和均不相等），排序后的结果仍重新存入结构数组bb中，
+   int jsSort()
+{ int i,j,cnt=0;
+  data xy;
+  for(i=0;i<200;i++)   if(aa[i].x1>(aa[i].x2+aa[i].x3)) bb[cnt++]=aa[i];
+  for(i=0;i<cnt-1;i++)
+    for(j=i+1;j<cnt;j++)      if(bb[i].x1+bb[i].x3>bb[j].x1+bb[j].x3) { xy=bb[i]; bb[i]=bb[j]; bb[j]=xy;}
+  return cnt;}
+★题目76（整数各位打散组合运算题）
+已知数据文件IN.DAT中存有200个四位数，并已调用读函数readDat()把这些数存入数组a中，请考生编制一函数jsVal()，其功能是：把个位数字和千位数字重新组成一个新的十位数（新十位数的十位数字是原四位数的个位数字，新十位数的个位数字是原四位数的千位数字），以及把百位数字和十位数字组成另一个新的十位数（新十位数的十位数字是原四位数的百位数字，新十位数的个位数字是原四位数的十位数字），如果新组成的两个十位数必须是一个奇数，另一个为偶数并且两个十位数中至少有一个数能被17整除，同时两个新数的十位数字均不为零，则将满足此条件的四位数按从大到小的顺序存入数组b中，并要计算满足上述条件的四位数的个数cnt。
+   void jsVal()
+{int i,j,thou,hun,ten,data,ab,cd;
+ for(i=0;i<MAX;i++)
+  {thou=a[i]/1000;   hun=a[i]/100%10;
+   ten=a[i]%100/10;  data=a[i]%10;
+   ab=10*data+thou;  cd=10*hun+ten; if((ab%2!=cd%2)&&((ab%17==0||cd%17==0)&&ab>=10&&cd>=10))
+     b[cnt++]=a[i];}
+ for(i=0;i<cnt-1;i++)
+   for(j=i+1;j<cnt;j++)
+     if(b[i]<b[j])  {data=b[i];b[i]=b[j];b[j]=data;}
+}
+★☆题目77（整数各位运算题）
+已知数据文件IN.DAT中存有200个四位数，并已调用读函数readDat()把这些数存入数组a中，请考生编制一函数jsVal()，其功能是：把一个四位数的千位数字上的值加上十位数字上的值恰好等于百位数字上的值加上个位数字上的值，并且原四位数是偶数，则统计出满足此条件的个数cnt并把这些四位数按从小到大的顺序存入数组b中，
+    void jsVal()
+{int i,j,thou,hun,ten,data;
+ for(i=0;i<MAX;i++)
+  {thou=a[i]/1000;   hun=a[i]/100%10;
+   ten=a[i]%100/10;  data=a[i]%10;   if((thou+ten==hun+data)&&a[i]%2==0) b[cnt++]=a[i]; }
+ for(i=0;i<cnt-1;i++)
+   for(j=i+1;j<cnt;j++)
+     if(b[i]>b[j])  {thou=b[i];b[i]=b[j];b[j]=thou;}}
+★题目78（整数各位统计排序题）
+已知数据文件IN.DAT中存有200个四位数，并已调用读函数readDat()把这些数存入数组a中，请考生编制一函数jsVal()，其功能是：若一个四位数的千位数字上的值大于等于百位数字上的值，百位数字上的值大于等于十位数字上的值，以及十位数字上的值大于等于个位数字上的值，并且原四位数是奇数，则统计出满足此条件的个数cnt并把这些四位数按从小到大的顺序存入数组b中，
+    void jsVal()
+{int i,j,thou,hun,ten,data;
+ for(i=0;i<MAX;i++)
+  {thou=a[i]/1000;   hun=a[i]/100%10;
+   ten=a[i]%100/10;  data=a[i]%10;   if(thou>=hun&&hun>=ten&&ten>=data&&a[i]%2) b[cnt++]=a[i]; }
+ for(i=0;i<cnt-1;i++)
+   for(j=i+1;j<cnt;j++)
+     if(b[i]>b[j])  {thou=b[i];b[i]=b[j];b[j]=thou;}}
+★题目79（数字运算题）
+请编写函数void countValue(int *a,int *n)，它的功能是：求出1到1000之内能被7或11整除但不能同时被7或11整除的所有整数放在数组a中，并通过n返回这些数的个数。
+    void countValue(int *a,int *n)
+{ int i;*n=0;
+  for(i=1;i<=1000;i++)
+    if(i%7==0&&i%11||i%7&&i%11==0)
+  a[(*n)++]=i;}
+题目80（整数各位数运算题）
+已知数据文件in.dat中存有300个四位数，并已调用读函数ReadDat()把这些数存入数组a中，请编制一函数jsValue()，其功能是：求出个位数上的数减千位数上的数减百位数上的数减十位数上的数大于零的个数cnt，再求出所有满足此条件的四位数平均值pjz1，以及不满足此条件的四位数平均值pjz2，    例如：1239，9-1-2-3>0，则该数满足条件计算平均值pjz1，且个数cnt=cnt+1。
+          8129，9-8-1-2<0，则该数不满足条件计算平均值pjz2。
+    jsValue()
+{int i,j,thou,hun,ten,data,n=0;
+ for(i=0;i<300;i++)
+  {thou=a[i]/1000;   hun=a[i]/100%10;
+ten=a[i]%100/10;  data=a[i]%10;
+   if(data-thou-hun-ten>0) { cnt++; pjz1+=a[i];}
+ else { n++; pjz2+=a[i];}}
+ if(cnt==0) pjz1=0;
+ else pjz1/=cnt;
+ if(n==0) pjz2=0;
+ else pjz2/=n;}
+☆题目81（整数各位数运算题）
+已知数据文件in.dat中存有300个四位数，并已调用读函数ReadDat()把这些数存入数组a中，请编制一函数jsValue()，其功能是：求出千位数上的数加百位数等于十位数上的数加个位数上的数的个数cnt，再求出所有满足此条件的四位数平均值pjz1，以及不满足此条件的四位数平均值pjz2，
+    例如：7153,7+1=5+3，则该数满足条件计算平均值pjz1，且个数cnt=cnt+1。8129,8+1<>2+9,则该数不满足条件计算平均值pjz2。
+   jsValue()
+{int i,thou,hun,ten,data,n=0;
+ for(i=0;i<300;i++)
+  {thou=a[i]/1000;  hun=a[i]%1000/100;
+   ten=a[i]%100/10;  data=a[i]%10;
+   if(thou+hun==ten+data) {cnt++;pjz1+=a[i];}
+   else {n++;pjz2+=a[i];}}
+ if(cnt==0) pjz1=0;
+ else pjz1/=cnt;
+ if(n==0) pjz2=0;
+ else pjz2/=n;}
+★题目82（素数题）
+已知数据文件in.dat中存有300个四位数，并已调用读函数ReadDat()把这些数存入数组a中，请编制一函数jsValue()，其功能是：求出所有这些四位数是素数的个数cnt，再求出所有满足此条件的四位数平均值pjz1，以及不满足此条件的四位数平均值pjz2，
+    例如：5591是素数，则该数满足条件计算平均值pjz1，且个数cnt=cnt+1。
+          9812是非素数，则该数不满足条件计算平均值pjz2。
+   int isP(int m)
+{int i;
+ for(i=2;i<m;i++)
+   if(m%i==0)return 0;
+ return 1;
+}
+jsValue()
+{int i;
+ for(i=0;i<300;i++)
+    if(isP(a[i])) {pjz1+=a[i];cnt++;}
+    else pjz2+=a[i];
+ if(cnt==0) pjz1=0;
+ else pjz1/=cnt;
+ if(300-cnt==0) pjz2=0;
+ else pjz2/=(300-cnt);
+}
+☆题目83（方差运算题）
+请编制函数ReadDat()实现从文件IN.DAT中读取1000个十进制整数到数组xx中；请编制函数Compute()分别计算出xx中奇数的个数odd，奇数的平均值ave1，偶数的平均值ave2以及所有奇数的方差totfc的值，最后调用函数WriteDat()把结果输出到OUT.DAT文件中。
+    计算方差的公式如下：
+             N        2
+    totfc=1/N ∑ (xx[i]-ave1)
+             i=1
+    设N为奇数的个数，xx[i]为奇数，ave1为奇数的平均值。
+        for(i=0;i<MAX;i++)
+ {fscanf(fp,"%d,",&xx[i]);
+  if((i+1)%10==0)
+    fscanf(fp,"\n");
+ }
+ fclose(fp);
+ return 0;
+}
+void Compute(void)
+{ int i,yy[MAX];
+  for(i=0;i<MAX;i++)
+     yy[i]=0;
+  for(i=0;i<MAX;i++)
+     if(xx[i]%2) {yy[odd++]=xx[i];  ave1+=xx[i];}
+ else{even++; ave2+=xx[i];}
+  if(odd==0) ave1=0;
+  else ave1/=odd;
+  if(even==0) ave2=0;
+  else ave2/=even;
+  for(i=0;i<odd;i++)    totfc+=(yy[i]-ave1)*(yy[i]-ave1)/odd;}
+☆题目84（选票问题）
+现有一个10个人100行的选票数据文件IN.DAT，其数据存放的格式是每条记录的长度均为10位，第一位表示第一个人的选中情况，第二位表示第二个人的选中情况，依此类推 ：内容均为字符0和1，1表示此人被选中，0表示此人未被选中，若一张选票人数大于5个人时被认为无效的选票。给定函数ReadDat()的功能是把选票数据读入到字符串数组xx中。请编制函数CountRs()来统计每个人的选票数并把得票数依次存入yy[0]到yy[9]中。
+ void CountRs(void)
+{ int i,j,count;
+  for(i=0;i<100;i++)
+   { count=0;
+     for(j=0;j<10;j++)
+       if(xx[i][j]=='1') count++;
+     if(count>5) continue;
+     for(j=0;j<10;j++)
+       if(xx[i][j]=='1') yy[j]++; }}
+☆题目85（整数各位数运算题）
+已知数据文件IN.DAT中存有200个四位数，并已调用读函数readDat()把这些数存入数组a中，请考生编制一函数jsVal()，其功能是：把一个四位数的个位数字上的值减去千位数字上的值再减去百位数字上的值最后减去十位数字上的值，如果得出的值大于等于零且原四位数是偶数，则统计出满足此条件的个数cnt并把这些四位数按从小到大的顺序存入数组b中，
+    void jsVal()
+{int i,j,thou,hun,ten,data;
+ for(i=0;i<MAX;i++)
+  {thou=a[i]/1000;   hun=a[i]/100%10;
+   ten=a[i]%100/10;  data=a[i]%10;   if(data-thou-hun-ten>=0&&a[i]%2==0)  b[cnt++]=a[i]; }
+ for(i=0;i<cnt-1;i++)
+   for(j=i+1;j<cnt;j++)
+     if(b[i]>b[j])  {thou=b[i];b[i]=b[j];b[j]=thou;}}
+题目86（整数各位打散组合运算题）
+已知数据文件IN.DAT中存有200个四位数，并已调用读函数readDat()把这些数存入数组a中，请考生编制一函数jsVal()，其功能是：把千位数字和十位数字重新组成一个新的十位数ab（新十位数的十位数字是原四位数的千位数字，新十位数的个位数字是原四位数的十位数字），以及把个位数字和百位数字组成另一个新的十位数cd（新十位数的十位数字是原四位数的个位数字，新十位数的个位数字是原四位数的百位数字），如果新组成的两个十位数ab>cd，ab必须是偶数且能被5整除，cd必须是奇数，同时两个新数的十位数字均不为零，则将满足此条件的四位数按从大到小的顺序存入数组b中，并要计算满足上述条件的四位数的个数cnt。
+   void jsVal()
+{int i,j,thou,hun,ten,data,ab,cd;
+ for(i=0;i<MAX;i++)
+   {thou=a[i]/1000;    hun=a[i]%1000/100;
+    ten=a[i]%100/10;   data=a[i]%10;
+    ab=10*thou+ten;    cd=10*data+hun;    if((ab-cd)>0&&(ab%2!=1&&ab%5==0)&&cd%2==1&&ab>=10&&cd>=10)
+  {b[cnt]=a[i];cnt++;}}
+  for(i=0;i<cnt-1;i++)
+    for(j=i+1;j<cnt;j++)
+       if(b[i]<b[j]) {data=b[i];b[i]=b[j];b[j]=data;}}
+☆题目87（整数各位运算统计题）
+已知数据文件in.dat中存有300个四位数，并已调用读函数ReadDat()把这些数存入数组a中，请编制一函数jsValue()，其功能是：求出千位数上的数加个位数等于百位数上的数加十位数上的数的个数cnt，再求出所有满足此条件的四位数平均值pjz1，以及不满足此条件的四位数平均值pjz2，
+    例如：6712,6+2=7+1，则该数满足条件计算平均值pjz1，且个数cnt=cnt+1。8129,8+9<>1+2,则该数不满足条件计算平均值pjz2。
+ jsValue()
+{ int i,gw,sw,bw,qw,cnt2=0;
+ for(i=0;i<300;i++)
+  {gw=a[i]%10;      sw=a[i]/10%10;
+   bw=a[i]/100%10;  qw=a[i]/1000;
+   if((qw+gw)==(sw+bw)) { cnt++;pjz1+=a[i]; }
+   else { cnt2++;pjz2+=a[i]; }}
+  if(cnt==0) pjz1=0;
+  else pjz1/=cnt;
+  if(cnt2==0) pjz2=0;
+  else pjz2/=cnt2;
+}
+题目88（字符串排序题）
+函数ReadDat()实现从文件IN.DAT中读取一篇英文文章存入到字符串数组xx中，请编制函数SortCharA()，其函数的功能是：以行为单位对字符按从小到大的顺序进行排序，排序后的结果仍按行重新存入字符串数组xx中，
+    例：原文：dAe,BfC.
+              CCbbAA
+        结果：,.ABCdef
+              AACCbb
+ void SortCharA(void)
+{int i,j,k,strl;
+ char ch;
+ for(i=0;i<maxline;i++)
+  {strl=strlen(xx[i]);
+   for(j=0;j<strl-1;j++)
+    for(k=j+1;k<strl;k++) 
+      if(xx[i][j]>xx[i][k])
+        {ch=xx[i][j]; xx[i][j]=xx[i][k]; xx[i][k]=ch;}}}
+题目89（整数统计排序题）
+已知数据文件IN.DAT中存有200个四位数，并已调用读函数readDat()把这些数存入数组a中，请考生编制一函数jsVal()，其功能是：把一个四位数的千位数字上的值加上个位数字上的值恰好等于百位数字上的值加上十位数字上的值，并且原四位数是奇数，则统计出满足此条件的个数cnt并把这些四位数按从小到大的顺序存入数组b中，
+    void jsVal()
+{ int i,j,gw,sw,bw,qw;
+ for(i=0;i<MAX;i++)
+  {gw=a[i]%10;      sw=a[i]/10%10;
+   bw=a[i]/100%10;  qw=a[i]/1000;   if((qw+gw)==(sw+bw)&&a[i]%2)  b[cnt++]=a[i];}
+ for(i=0;i<cnt-1;i++)
+   for(j=i+1;j<cnt;j++)
+     if(b[i]>b[j]) { qw=b[i]; b[i]=b[j]; b[j]=qw;}}
+★题目90（整数排序题）
+下列程序的功能是：将一正整数序列{K1,K2,...,K9}重新排列成一个新的序列。新序列中，比K1小的数都在K1的前面（左面），比K1大的数都在K1的后面（右面）。要求编写函数jsValue()实现此功能，最后调用writeDat()函数将新序列输出到文件out.dat中。
+    说明：在程序中已给出了10个序列，每个序列有9个正整数，并存入数组a[10][9]中，分别求出这10个新序列。
+    例：序列{6,8,9,1,2,5,4,7,3}
+        经重排后成为{3,4,5,2,1,6,8,9,7}
+    jsValue(int a[10][9])
+{ int i,j,k,val,num;
+  for(i=0;i<10;i++)
+   { val=a[i][0];
+     for(j=0;j<9;j++)
+      if(a[i][j]<val)
+	{ num=a[i][j];
+	  for(k=j;k>0;k--)
+	    a[i][k]=a[i][k-1];
+	  a[i][0]=num;}}}
+题目91（整数统计运算题）
+请编制程序prog1.c，从文件in.dat中读取200个整数至数组xx中，求出奇数的个数cnt1和偶数的个数cnt2以及数组xx下标为偶数的元素值的算术平均值pj（保留2位小数）。
+sum=0; pj=0.0;  cnt1=cnt2=0;
+ for(i=0;i<N;i++) 
+  { if(xx[i]%2) cnt1++;
+    else cnt2++;
+    if(i%2==0) {pj+=xx[i];sum++;} }
+ pj/=sum;
+☆题目92（整数统计运算题）
+请编制程序prog1.c，从文件IN.DAT中读取200个整数至数组xx中，求出最大数max及最大数的个数cnt和数组xx中能被3整除或能被7整除的算术平均值pj（保留2位小数）。
+cnt=0;  max=xx[0];  pj=0.0;  n=0;
+ for(m=0;m<N;m++)
+   if(max<xx[m]) max=xx[m];
+ for(m=0;m<N;m++)
+   {if(xx[m]==max) cnt++;
+ if(xx[m]%3==0||xx[m]%7==0)
+       { pj+=xx[m];  n++; }}
+ pj/=n;
+☆题目93（方差运算题）
+请编制函数ReadDat()实现从文件IN.DAT中读取1000个十进制整数到数组xx中；请编制函数Compute()，分别计算出xx中奇数的个数odd，偶数的个数even，平均值aver以及方差totfc的值，
+    计算方差的公式如下：
+             N        2
+    totfc=1/N ∑  (xx[i]-aver)
+             i=1
+    原始数据文件存放的格式是：每行存放10个数，并用逗号隔开。（每个数均大于0且小于等于2000）
+    for(i=0;i<MAX;i++)
+  { fscanf(fp,"%d,",&xx[i]);
+    if((i+1)%10==0)
+    fscanf(fp,"\n");
+  }
+/*********************************************/
+ fclose(fp);
+ return 0;
+}
+void Compute(void)
+{  int i;
+  for(i=0;i<MAX;i++)
+   { if(xx[i]%2)  odd++;
+     else  even++;
+     aver+=xx[i]; }
+  aver/=MAX;
+  for(i=0;i<MAX;i++)   totfc+=(xx[i]-aver)*(xx[i]-aver);totfc/=MAX;}
+★题目94（整数统计运算题）
+请编制程序prog1.c，从文件in.dat中读取200个整数至数组xx中，求出奇数的个数cnt1和偶数的个数cnt2以及数组xx中值为偶数的算术平均值pj（保留2位小数）。
+cnt1=0;  cnt2=0;  pj=0.0;
+ for(m=0;m<N;m++)
+   if(xx[m]%2) cnt1++;
+   else { cnt2++; pj+=xx[m];}
+ if(cnt2==0) pj=0;
+ else pj/=cnt2;
+☆题目95（字符替换题）
+函数ReadDat()实现从文件ENG.IN中读取一篇英文文章，存入到字符串数组xx中；请编制函数encryptChar()，按给定的替代关系对数组xx中的所有字符进行替代，仍存入数组xx的对应的位置上，　　替代关系：f(p)=p*11 mod 256（p是数组中某一个字符的ASCII值，f(p)是计算后新字符的ASCII值），如果计算后f(p)值小于等于32或f(p)对应的字符是大写字母，则该字符不变，否则将f(p)所对应的字符进行替代。
+void encryptChar()
+{ int i,j;
+  for(i=0;i<maxline;i++)  for(j=0;j<strlen(xx[i]);j++)    if(xx[i][j]*11%256<=32||xx[i][j]*11%256>='A'&&xx[i][j]*11%256<='Z') continue;
+    else xx[i][j]=xx[i][j]*11%256;}
+☆题目96（字符替换题）
+函数ReadDat()实现从文件ENG.IN中读取一篇英文文章，存入到字符串数组xx中；请编制函数encryptChar()，按给定的替代关系对数组xx中的所有字符进行替代，仍存入数组xx的对应的位置上，
+　　替代关系：f(p)=p*11mod 256 （p是数组中某一个字符的ASCII值，f(p)是计算后新字符的ASCII值），如果原字符是小写字母或计算后f(p)值小于等于32，则该字符不变，否则将f(p)所对应的字符进行替代。　　void encryptChar()
+{ int i,j;
+  for(i=0;i<maxline;i++)
+   for(j=0;j<strlen(xx[i]);j++)    if(xx[i][j]*11%256<=32||xx[i][j]>='a'&&xx[i][j]<='z') continue;
+    else xx[i][j]=xx[i][j]*11%256;}
+★题目97（字符替换题）
+函数ReadDat()实现从文件ENG.IN中读取一篇英文文章，存入到字符串数组xx中；请编制函数encryptChar()，按给定的替代关系对数组xx中的所有字符进行替代，仍存入数组xx的对应的位置上，　　替代关系：f(p)=p*11 mod 256（p是数组中某一个字符的ASCII值，f(p)是计算后新字符的ASCII值），如果原字符是数字字符0至9或计算后f(p)值小于等于32，则该字符不变，否则将f(p)所对应的字符进行替代。
+　void encryptChar()
+{ int i,j;
+  for(i=0;i<maxline;i++)   for(j=0;j<strlen(xx[i]);j++)    if(xx[i][j]*11%256<=32||xx[i][j]>='0'&&xx[i][j]<='9') continue;
+    else xx[i][j]=xx[i][j]*11%256;
+}
+★题目98（字符替题）
+　 函数ReadDat()实现从文件ENG.IN中读取一篇英文文章，存入到字符串数组xx中；请编制函数encryptChar()，按给定的替代关系对数组xx中的所有字符进行替代，仍存入数组xx的对应的位置上，最后调用函数WriteDat()把结果xx输出到文件PS3.DAT中。
+　　替代关系：f(p)=p*17 mod 256（p是数组中某一个字符的ASCII值，f(p)是计算后新字符的ASCII值），如果计算后f(p)值小于等于32或其ASCII值是奇数，则该字符不变，否则将f(p)所对应的字符进行替代。　　void encryptChar()
+{ int i,j;
+  for(i=0;i<maxline;i++)  for(j=0;j<strlen(xx[i]);j++)    if(xx[i][j]*17%256<=32||(xx[i][j]*17%256)%2!=0) continue;
+    else xx[i][j]=xx[i][j]*17%256;
+}
+★题目99（结构体排列题）
+已知在文件IN.DAT中存有100个产品销售记录，每个产品销售记录由产品代码dm(字符型4位)，产品名称mc(字符型10位)，单价dj(整型)，数量sl(整型)，金额je(长整型)五部分组成。其中：金额=单价*数量计算得出。函数ReadDat()是读取这100个销售记录并存入结构数组sell中。请编制函数SortDat()，其功能要求：按金额从小到大进行排列，若金额相等，则按产品代码从小到大进行排列，最终排列结果仍存入结构数组sell中，   　　 void SortDat()
+{int i,j;
+ PRO xy;
+ for(i=0;i<99;i++)
+  for(j=i+1;j<100;j++)  if(sell[i].je>sell[j].je||sell[i].je==sell[j].je&&strcmp(sell[i].dm,sell[j].dm)>0)
+{xy=sell[i];sell [i]=sell[j];sell[j]=xy;}
+}
+★☆题目100（字符替换题）
+函数ReadDat()实现从文件IN.DAT中读取一篇英文文章存入到字符串数组xx中，请编制函数CharConvA()，其函数的功能是：以行为单位把字符串中的最后一个字符的ASCII值右移4位，高位补0后加最后第二个字符的ASCII值，得到最后一个新的字符，最后第二个字符的ASCII值右移4位，高位补0后加最后第三个字符的ASCII值，得到最后第二个新的字符，依此类推一直处理到第二个字符，第一个字符的ASCII值加原最后一个字符的ASCII值，得到第一个新的字符，得到的新字符分别存放在原字符串对应的位置上。最后已处理的字符串仍按行重新存入字符串数组xx中，最后调用函数writeDat()把结果xx输出到文件OUT10.DAT中。
+    原始数据文件存放的格式是：每行的宽度均小于80个字符，含标点符号和空格。
+    void CharConvA()
+{ int i,j;
+  char p,c;
+  for(i=0;i<maxline;i++)
+ { p=xx[i][strlen(xx[i])-1];
+      c=xx[i][0];  for(j=strlen(xx[i])-1;j>0;j--)        xx[i][j]=(xx[i][j]>>4)+xx[i][j-1];
+  xx[i][0]=p+c; }}
+<PIXTEL_MMI_EBOOK_2005>1                                                           </PIXTEL_MMI_EBOOK_2005>
+
+
+
+7
+
+
