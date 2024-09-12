@@ -21,15 +21,15 @@
 
 支持本仓库，请到Gitee和GitHub给我们点Star！
 
-Gitee：https://gitee.com/caozha/ncre
+Gitee：https://gitee.com/dengzhenhua/ncre
 
-GitHub：https://github.com/cao-zha/ncre
+GitHub：https://github.com/dengcao/ncre
 
 
 
 ### 联系本人
 
-我的博客 www.caozha.com
+我的博客 www.5300.cn
 
 
 
