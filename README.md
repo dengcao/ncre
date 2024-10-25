@@ -27,9 +27,11 @@ GitHub：https://github.com/dengcao/ncre
 
 
 
-### 联系本人
+### 关于
 
-我的博客 www.5300.cn
+开发：邓草 www.5300.cn
+
+鸣谢：品络 www.pinluo.com  &ensp;  汉语言文学网 www.hyywx.com  &ensp;  雄马 www.xiongma.cn
 
 
 
