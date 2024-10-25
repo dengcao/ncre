@@ -17,7 +17,7 @@
 3、因一些众所周知的因素，建议您去Github下载本仓库，资料可能会更全哦。
 
 
-### 赞助支持
+### 支持
 
 支持本仓库，请到Gitee和GitHub给我们点Star！
 
@@ -29,9 +29,9 @@ GitHub：https://github.com/dengcao/ncre
 
 ### 关于
 
-开发：邓草 www.5300.cn
+开发：邓草博客 blog.5300.cn
 
-鸣谢：品络 www.pinluo.com  &ensp;  汉语言文学网 www.hyywx.com  &ensp;  雄马 www.xiongma.cn
+赞助：品络 www.pinluo.com  &ensp;  AI工具箱 www.5300.cn  &ensp;  汉语言文学网 www.hyywx.com  &ensp;  雄马 www.xiongma.cn
 
 
 
